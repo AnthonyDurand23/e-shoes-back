@@ -16,8 +16,21 @@ const product_1 = __importDefault(require("../models/product"));
 const productController = {
     getProducts: (request, response) => __awaiter(void 0, void 0, void 0, function* () {
         try {
+            console.log("get products");
             const genre = request.params.genre;
             const products = yield product_1.default.findByGenre(genre);
+            response.status(200).json(products);
+        }
+        catch (error) {
+            if (error instanceof Error)
+                response.status(500).json(error.message);
+        }
+    }),
+    getProduct: (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            console.log("get product");
+            const id = Number(request.params.id);
+            const products = yield product_1.default.findById(id);
             response.status(200).json(products);
         }
         catch (error) {

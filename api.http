@@ -1,6 +1,11 @@
 @host=http://localhost:5000
 
-//Get user
-GET {{host}}/products/femme
+//Get products by genre
+GET {{host}}/produits/femme
+
+###
+
+//Get product by id
+GET {{host}}/produit/1
 
 ###

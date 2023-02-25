@@ -63,5 +63,30 @@ class Product {
             }
         });
     }
+    static findById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { rows } = yield database_1.default.query(` SELECT produit.*, genre.nom AS genre, cat_agg.categories FROM produit
+          JOIN genre ON produit.genre_id = genre.id
+          JOIN (
+            SELECT produit.id, ARRAY_AGG(categorie.nom) AS categories FROM produit
+            JOIN produit_categorie ON produit.id = produit_categorie.produit_id
+            JOIN categorie ON produit_categorie.categorie_id = categorie.id
+            GROUP BY produit.id) AS cat_agg
+          ON produit.id = cat_agg.id
+          WHERE produit.id = $1;
+        `, [id]);
+                if (!rows[0])
+                    throw new Error(`Aucun produit trouvé avec l'id: ${id}`);
+                const product = new Product(rows[0]);
+                return product;
+            }
+            catch (error) {
+                console.log(error);
+                if (error instanceof Error)
+                    throw new Error(error.message);
+            }
+        });
+    }
 }
 exports.default = Product;
