@@ -1,0 +1,5 @@
+%syntax-version=1.0.0
+%project=e-shoes
+
+init 2023-02-22T17:41:02Z anthony,,, <anthony@anthony-Inspiron-5502> # Initial tables
+seeding_products 2023-02-24T11:45:36Z anthony,,, <anthony@anthony-Inspiron-5502> # Seeding for tables products, genre and categories
