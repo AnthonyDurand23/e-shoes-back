@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP TABLE "produit_categorie", "categorie", "genre", "produit";
+DROP TABLE "product_category", "category", "gender", "product";
 
 COMMIT;

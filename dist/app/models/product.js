@@ -17,43 +17,66 @@ class Product {
     constructor(obj) {
         this.id = obj.id;
         this.reference = obj.reference;
-        this.nom = obj.nom;
-        this.marque = obj.marque;
-        this.prix = obj.prix;
+        this.name = obj.name;
+        this.brand = obj.brand;
+        this.price = obj.price;
         this.photos = obj.photos;
-        this.dessus = obj.dessus;
-        this.doublure = obj.doublure;
-        this.semelle_proprete = obj.semelle_proprete;
-        this.semelle_usure = obj.semelle_usure;
-        this.epaisseur_doublure = obj.epaisseur_doublure;
-        this.matiere = obj.matiere;
-        this.temps = obj.temps;
+        this.top = obj.top;
+        this.lining = obj.lining;
+        this.sockliner = obj.sockliner;
+        this.outsole = obj.outsole;
+        this.lining_thickness = obj.lining_thickness;
+        this.material = obj.material;
+        this.weather = obj.weather;
         this.sport = obj.sport;
-        this.bout = obj.bout;
-        this.forme_talon = obj.forme_talon;
-        this.fermeture = obj.fermeture;
-        this.motif = obj.motif;
-        this.info_sup = obj.info_sup;
-        this.proprietes = obj.proprietes;
-        this.genre = obj.genre;
+        this.end = obj.end;
+        this.heel_shape = obj.heel_shape;
+        this.closure = obj.closure;
+        this.pattern = obj.pattern;
+        this.additional_infos = obj.additional_infos;
+        this.properties = obj.properties;
+        this.gender = obj.gender;
         this.categories = obj.categories;
     }
-    static findByGenre(genre) {
+    static findAll() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const mixte = genre === "femme" || genre === "homme" ? "mixte" : "";
-                const { rows } = yield database_1.default.query(` SELECT produit.*, genre.nom AS genre, cat_agg.categories FROM produit
-          JOIN genre ON produit.genre_id = genre.id
+                const { rows } = yield database_1.default.query(` SELECT product.*, gender.name AS gender, cat_agg.categories FROM product
+          JOIN gender ON product.gender_id = gender.id
           JOIN (
-            SELECT produit.id, ARRAY_AGG(categorie.nom) AS categories FROM produit
-            JOIN produit_categorie ON produit.id = produit_categorie.produit_id
-            JOIN categorie ON produit_categorie.categorie_id = categorie.id
-            GROUP BY produit.id) AS cat_agg
-          ON produit.id = cat_agg.id
-          WHERE genre.nom = $1 OR genre.nom = $2;
-        `, [genre, mixte]);
+            SELECT product.id, ARRAY_AGG(category.name) AS categories FROM product
+            JOIN product_category ON product.id = product_category.product_id
+            JOIN category ON product_category.category_id = category.id
+            GROUP BY product.id) AS cat_agg
+          ON product.id = cat_agg.id;
+        `);
                 if (!rows[0])
-                    throw new Error(`Aucun produit trouvé pour le genre: ${genre}`);
+                    throw new Error(`Aucun produit trouvé`);
+                return rows.map((row) => new Product(row));
+            }
+            catch (error) {
+                console.log(error);
+                if (error instanceof Error)
+                    throw new Error(error.message);
+            }
+        });
+    }
+    static findByGender(gender) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const mixte = gender === "femme" || gender === "homme" ? "mixte" : "";
+                const { rows } = yield database_1.default.query(` SELECT product.*, gender.name AS gender, cat_agg.categories FROM product
+          JOIN gender ON product.gender_id = gender.id
+          JOIN (
+            SELECT product.id, ARRAY_AGG(category.name) AS categories FROM product
+            JOIN product_category ON product.id = product_category.product_id
+            JOIN category ON product_category.category_id = category.id
+            GROUP BY product.id) AS cat_agg
+          ON product.id = cat_agg.id
+          WHERE gender.name = $1 OR gender.name = $2;
+        `, [gender, mixte]);
+                if (!rows[0])
+                    throw new Error(`Aucun produit trouvé pour le gender: ${gender}`);
                 return rows.map((row) => new Product(row));
             }
             catch (error) {
@@ -66,15 +89,15 @@ class Product {
     static findById(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const { rows } = yield database_1.default.query(` SELECT produit.*, genre.nom AS genre, cat_agg.categories FROM produit
-          JOIN genre ON produit.genre_id = genre.id
+                const { rows } = yield database_1.default.query(` SELECT product.*, gender.name AS gender, cat_agg.categories FROM product
+          JOIN gender ON product.gender_id = gender.id
           JOIN (
-            SELECT produit.id, ARRAY_AGG(categorie.nom) AS categories FROM produit
-            JOIN produit_categorie ON produit.id = produit_categorie.produit_id
-            JOIN categorie ON produit_categorie.categorie_id = categorie.id
-            GROUP BY produit.id) AS cat_agg
-          ON produit.id = cat_agg.id
-          WHERE produit.id = $1;
+            SELECT product.id, ARRAY_AGG(category.name) AS categories FROM product
+            JOIN product_category ON product.id = product_category.product_id
+            JOIN category ON product_category.category_id = category.id
+            GROUP BY product.id) AS cat_agg
+          ON product.id = cat_agg.id
+          WHERE product.id = $1;
         `, [id]);
                 if (!rows[0])
                     throw new Error(`Aucun produit trouvé avec l'id: ${id}`);

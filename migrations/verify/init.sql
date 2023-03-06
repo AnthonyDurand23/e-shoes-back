@@ -2,8 +2,8 @@
 
 BEGIN;
 
-SELECT id FROM "produit" WHERE false;
-SELECT id FROM "genre" WHERE false;
-SELECT id FROM "categorie" WHERE false;
+SELECT id FROM "product" WHERE false;
+SELECT id FROM "gender" WHERE false;
+SELECT id FROM "category" WHERE false;
 
 ROLLBACK;

@@ -2,14 +2,14 @@
 
 BEGIN;
 
-INSERT INTO "genre" (nom)
+INSERT INTO "gender" (name)
 VALUES 
 ('femme'),
 ('homme'),
 ('mixte'),
 ('enfant');
 
-INSERT INTO "produit" (reference, nom, marque, prix, photos, dessus, doublure, semelle_proprete, semelle_usure, epaisseur_doublure, matiere, temps, sport, bout, forme_talon, fermeture, motif, info_sup, proprietes, genre_id)
+INSERT INTO "product" (reference, name, brand, price, photos, top, lining, sockliner, outsole, lining_thickness, material, weather, sport, "end", heel_shape, closure, pattern, additional_infos, properties, gender_id)
 VALUES 
 ('B4G11A00K-Q11', 'Sasha', 'Balagan', 111.75, 'B4G11A00K-Q11_1|B4G11A00K-Q11_2|B4G11A00K-Q11_3|B4G11A00K-Q11_4', 'Cuir', '100 % coton', 'Cuir', 'Matière synthétique', 'Doublure protégeant du froid', '', '', '', 'Rond', 'Plat', 'Sans lacets', 'Couleur unie', '', '', 1),
 ('HU711N029-Q11', 'Tabita Rain Bootie', 'Hugo', 99.95, 'HU711N029-Q11_1|HU711N029-Q11_2|HU711N029-Q11_3|HU711N029-Q11_4|HU711N029-Q11_5|HU711N029-Q11_6|HU711N029-Q11_7', 'Matière synthétique', 'Textile', 'Textile', 'Matière synthétique', 'Non doublé', '', 'Pluie', '', 'Rond', 'Plat', 'Sans lacets', 'Couleur unie', '', 'Imperméable', 1),
@@ -87,7 +87,7 @@ VALUES
 ('NE216D05Z-A11', 'PZ530 Unisex', 'New Balance', 69.95, 'NE216D05Z-A11_1|NE216D05Z-A11_2|NE216D05Z-A11_3|NE216D05Z-A11_4|NE216D05Z-A11_5|NE216D05Z-A11_6', 'Imitation cuir / textile', 'Textile', 'Textile', 'Matière synthétique', 'Doublure protégeant du froid', 'Mesh, cuir synthétique', '', '', 'Rond', '', 'Laçage', 'Imprimé', '', '', 4),
 ('NI116D09P-A11', 'Force 1 Unisex', 'Nike Sportswear', 69.95, 'NI116D09P-A11_1|NI116D09P-A11_2|NI116D09P-A11_3|NI116D09P-A11_4|NI116D09P-A11_5|NI116D09P-A11_6|NI116D09P-A11_7', 'Cuir', 'Textile', 'Textile', 'Matière synthétique', 'Doublure protégeant du froid', '', '', '', 'Rond', '', 'Laçage', 'Couleur unie', '', '', 4);
 
-INSERT INTO "categorie" (nom)
+INSERT INTO "category" (name)
 VALUES 
 ('Bottes'),
 ('Bottines'),
@@ -100,7 +100,7 @@ VALUES
 ('Chaussons'),
 ('Chaussures de randonnée');
 
-INSERT INTO "produit_categorie" (produit_id, categorie_id)
+INSERT INTO "product_category" (product_id, category_id)
 VALUES 
 (1, 1),
 (2, 1),

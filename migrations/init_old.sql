@@ -3,12 +3,12 @@
 BEGIN;
 
 CREATE TABLE "gender" (
-  "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  "id" INT PRIMARY KEY,
   "name" TEXT NOT NULL
 );
 
 CREATE TABLE "product" (
-  "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  "id" INT PRIMARY KEY,
   "reference" TEXT NOT NULL UNIQUE,
   "name" TEXT,
   "brand" TEXT,
@@ -32,7 +32,7 @@ CREATE TABLE "product" (
 );
 
 CREATE TABLE "category" (
-  "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  "id" INT PRIMARY KEY,
   "name" TEXT NOT NULL
 );
 
