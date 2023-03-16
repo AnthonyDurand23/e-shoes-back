@@ -3,3 +3,4 @@
 
 init 2023-02-22T17:41:02Z anthony,,, <anthony@anthony-Inspiron-5502> # Initial tables
 seeding_products 2023-02-24T11:45:36Z anthony,,, <anthony@anthony-Inspiron-5502> # Seeding for tables products, gender and categories
+order_table 2023-03-11T08:35:42Z anthony,,, <anthony@anthony-Inspiron-5502> # Creation of order table

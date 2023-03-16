@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
+const orderController_1 = __importDefault(require("./controllers/orderController"));
 const productController_1 = __importDefault(require("./controllers/productController"));
 const router = (0, express_1.Router)();
 router.get(`/produits/`, productController_1.default.getProducts);
@@ -13,4 +14,5 @@ router.get(`/getDB`, (_req, res) => {
     var _a;
     res.send(`${(_a = process.env.DATABASE_URL) === null || _a === void 0 ? void 0 : _a.split("@")[1].split(":")[0]}`);
 });
+router.post(`/order`, orderController_1.default.postOrder);
 exports.default = router;
