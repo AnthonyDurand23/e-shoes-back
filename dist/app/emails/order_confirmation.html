@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./order_confirmation.css" />
+  </head>
+  <body>
+    <div class="order">
+      <h1>Confirmation de commande</h1>
+      <p>Commande n° {{orderId}}</p>
+    </div>
+    <div class="hello">
+      <p>Bonjour,</p>
+      <p>
+        Nous vous remercions pour votre commande sur notre boutique en ligne
+        E-SHOES. Nous vous tiendrons informé par email lorsque les articles de
+        votre commande auront été expédiés. Votre date de livraison estimée est
+        indiquée ci-dessous.
+      </p>
+    </div>
+    <div class="delivery">
+      <div class="delivery-date">
+        <p>Date de livraison estimée :</p>
+        <p>{{deliveryDate}}</p>
+      </div>
+      <div class="delivery-address">
+        <p>Adresse de livraison :</p>
+        <div>
+          <p>{{address}}</p>
+          <p>{{zipcode}}</p>
+          <p>{{city}}</p>
+        </div>
+      </div>
+      <div class="delivery-amount">
+        <p>Montant total de la commande :</p>
+        <p>{{amount}} €</p>
+      </div>
+    </div>
+    <div class="cart">
+      <ul>
+        {{#cart}}
+        <li>
+          <div class="cart-product">
+            <img
+              class="cart-product-img"
+              src="{{photoUrl}}"
+              alt="Photo du produit {{name}}"
+            />
+            <div class="cart-product-infos">
+              <p>{{name}}</p>
+              <p>Taille : {{size}}</p>
+              <p>Quantité : {{quantity}}</p>
+              <p>Prix : {{price}} €</p>
+            </div>
+          </div>
+        </li>
+        {{/cart}}
+      </ul>
+    </div>
+    <div class="footer">
+      <p>
+        Pour toute question relative à votre commande, n'hésitez pas à nous
+        contacter par retour de mail ou via notre formulaire de contact sur
+        notre site
+        <a href="e-shoes.adwebdev.fr">e-shoes.adwebdev.fr.</a>
+      </p>
+      <p>Merci de votre achat et à bientôt sur E-SHOES.</p>
+      <p>L'équipe E-SHOES.</p>
+    </div>
+  </body>
+</html>

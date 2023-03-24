@@ -151,6 +151,28 @@ class Product {
       if (error instanceof Error) throw new Error(error.message);
     }
   }
+
+  static async findPriceByRefrence(
+    reference: string
+  ): Promise<{ reference: string; price: number } | undefined> {
+    try {
+      const { rows } = await db.query(
+        `SELECT product.price FROM product WHERE product.reference = $1;`,
+        [reference]
+      );
+
+      if (!rows[0])
+        throw new Error(`Aucun prix trouvé avec la référence: ${reference}`);
+
+      return {
+        reference: reference,
+        price: rows[0].price,
+      };
+    } catch (error) {
+      console.log(error);
+      if (error instanceof Error) throw new Error(error.message);
+    }
+  }
 }
 
 export default Product;
